@@ -22,6 +22,8 @@ Diferente de abordagens estritamente acadêmicas, este repositório utiliza ferr
 
 O conjunto de dados contém transações de cartões de crédito europeus onde as fraudes representam apenas **0,17%** do total.
 
+![Desbalanceamento de Classes](images/desbalanceamento.png)
+
 Neste contexto, a acurácia é uma métrica enganosa. Se o modelo classificar todas as transações como legítimas, ele atingirá 99,8% de acurácia, mas falhará em seu propósito de negócio. O foco estratégico deste projeto foi otimizar o **Recall** para minimizar o prejuízo financeiro, monitorando a **Precisão** para evitar o atrito com clientes legítimos.
 
 ---
@@ -35,6 +37,8 @@ Neste contexto, a acurácia é uma métrica enganosa. Se o modelo classificar to
 * **Remoção de Outliers (IQR):** Aplicamos o método do Intervalo Interquartil para remover ruídos extremos nas features de maior importância:
   $$IQR = Q_3 - Q_1$$
   $$Limite\_Inferior = Q_1 - (1.5 \times IQR)$$
+
+![Análise de Outliers](images/boxplot_outliers.png)
 
 ### Experimentação com Balanceamento
 Foram testadas duas abordagens principais, documentadas no MLflow:
@@ -52,5 +56,7 @@ O diferencial técnico deste projeto foi o ajuste do **Limiar de Decisão (Thres
 | **Recall (Classe 1)** | **89%** |
 | **Falsos Positivos** | **35** |
 | **Precisão (Classe 1)** | **71%** |
+
+![Matriz de Confusão Final](images/matriz_confusao_final.png)
 
 **Conclusão:** O modelo final captura 89% das fraudes reais, gerando apenas 35 bloqueios indevidos em um universo de mais de 56.000 transações de teste.
